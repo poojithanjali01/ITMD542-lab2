@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Sample contacts data
+// load contacts data
 let contacts = require('./data/contacts.json');
 
 // Routes
