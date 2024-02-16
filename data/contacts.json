@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "firstName": "Alejandro",
+    "lastName": "Gonzalez",
+    "email": "alejandro.gonzalez@illinoistech.edu",
+    "notes": "Alejandro is a software engineer with a passion for building innovative solutions.",
+    "createdAt": "2024-02-16T12:00:00Z",
+    "updatedAt": "2024-02-16T12:00:00Z"
+  },
+  {
+    "id": "2",
+    "firstName": "Sofia",
+    "lastName": "Hernandez",
+    "email": "sofia.hernandez@illinoistech.edu",
+    "notes": "Sofia is a marketing specialist with expertise in digital advertising.",
+    "createdAt": "2024-02-16T12:15:00Z",
+    "updatedAt": "2024-02-16T12:15:00Z"
+  },
+  {
+    "id": "3",
+    "firstName": "Diego",
+    "lastName": "Lopez",
+    "email": "diego.lopez@illinoistech.edu",
+    "notes": "Diego is an aspiring entrepreneur with a background in finance.",
+    "createdAt": "2024-02-16T12:30:00Z",
+    "updatedAt": "2024-02-16T12:30:00Z"
+  },
+  {
+    "id": "4",
+    "firstName": "Elena",
+    "lastName": "Ramirez",
+    "email": "elena.ramirez@illinoistech.edu",
+    "notes": "Elena is a graphic designer who loves creating visually appealing content.",
+    "createdAt": "2024-02-16T12:45:00Z",
+    "updatedAt": "2024-02-16T12:45:00Z"
+  },
+  {
+    "id": "5",
+    "firstName": "Gabriel",
+    "lastName": "Martinez",
+    "email": "gabriel.martinez@illinoistech.edu",
+    "notes": "Gabriel is a computer science student interested in machine learning.",
+    "createdAt": "2024-02-16T13:00:00Z",
+    "updatedAt": "2024-02-16T13:00:00Z"
+  }
+]
