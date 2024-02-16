@@ -32,7 +32,7 @@ This project is a simple contact database application built using Node.js and Ex
     ![home](https://github.com/poojithanjali01/ITMD542-lab2/blob/main/images/home.png)
   -All contacts
     ![All contacts](https://github.com/poojithanjali01/ITMD542-lab2/blob/main/images/allcontacts.png)
-  - Edit Contacts![edit contacts](https://github.com/poojithanjali01/ITMD542-lab2/blob/main/images/editcontacts.png)
+  - Edit Contacts![edit contacts](https://github.com/poojithanjali01/ITMD542-lab2/blob/main/images/editcontact.png)
   - View contacts
     ![viewcontacts](https://github.com/poojithanjali01/ITMD542-lab2/blob/main/images/viewcontacts.png)
 
