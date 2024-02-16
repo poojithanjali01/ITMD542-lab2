@@ -29,7 +29,7 @@ This project is a simple contact database application built using Node.js and Ex
 - Experienced the process of saving and retrieving data from JSON files.
 - Screenshots:
   - ##Home
-    ![home}(https://github.com/poojithanjali01/ITMD542-lab2/blob/main/images/home.png0
+    ![home}(https://github.com/poojithanjali01/ITMD542-lab2/blob/main/images/home.png)
   ##All contacts
     ![All contacts](https://github.com/poojithanjali01/ITMD542-lab2/blob/main/images/allcontacts.png)
 
