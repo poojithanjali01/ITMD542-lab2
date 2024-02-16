@@ -4,25 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All Contacts</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <h1>All Contacts</h1>
-  <!-- Table to display contacts -->
-  <table id="contactsTable">
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Contacts will be dynamically added here -->
-    </tbody>
-  </table>
-  <!-- Link to create a new contact -->
-  <a href="/create-contact">Create New Contact</a>
+  <div class="container">
+    <h1>All Contacts</h1>
+    <!-- Table to display contacts -->
+    <table id="contactsTable" class="table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Contacts will be dynamically added here -->
+      </tbody>
+    </table>
+    <!-- Link to create a new contact -->
+    <a href="/create-contact" class="btn btn-primary">Create New Contact</a>
+  </div>
 
   <!-- Script to fetch contacts and populate the table -->
   <script>
@@ -39,9 +43,9 @@
             <td>${contact.lastName}</td>
             <td>${contact.email || ''}</td>
             <td>
-              <a href="/contacts/${contact.id}">View</a>
-              <a href="/edit-contact/${contact.id}">Edit</a>
-              <button onclick="deleteContact('${contact.id}')">Delete</button>
+              <a href="/contacts/${contact.id}" class="btn btn-info">View</a>
+              <a href="/edit-contact/${contact.id}" class="btn btn-warning">Edit</a>
+              <button onclick="deleteContact('${contact.id}')" class="btn btn-danger">Delete</button>
             </td>
           `;
           tbody.appendChild(row);
