@@ -28,10 +28,13 @@ This project is a simple contact database application built using Node.js and Ex
 - Encountered errors related to URI decoding and routing which were resolved through debugging.
 - Experienced the process of saving and retrieving data from JSON files.
 - Screenshots:
-  - ##Home
+  - Home
     ![home](https://github.com/poojithanjali01/ITMD542-lab2/blob/main/images/home.png)
-  ##All contacts
+  -All contacts
     ![All contacts](https://github.com/poojithanjali01/ITMD542-lab2/blob/main/images/allcontacts.png)
+  - Edit Contacts![edit contacts](https://github.com/poojithanjali01/ITMD542-lab2/blob/main/images/editcontacts.png)
+  - View contacts
+    ![viewcontacts](https://github.com/poojithanjali01/ITMD542-lab2/blob/main/images/viewcontacts.png)
 
 ## References
 - Express.js Documentation: [https://expressjs.com/](https://expressjs.com/)
