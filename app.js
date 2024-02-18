@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid'); 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,7 +37,7 @@ app.get('/contacts/:id', (req, res) => {
   if (!contact) {
     return res.status(404).send('Contact not found');
   }
-  res.json(contact); // Send the contact details as JSON
+  res.sendFile(path.join(__dirname, 'views', 'view.html')); // Render view.html for the contact
 });
 
 
@@ -70,6 +71,21 @@ app.post('/edit-contact/:id', (req, res) => {
   res.redirect('/contacts'); // Redirect to the contacts page after successful update
 });
 
+// POST route for creating a new contact
+app.post('/contacts', (req, res) => {
+  const { firstName, lastName, email, notes } = req.body;
+  const newContact = {
+    id: uuidv4(), 
+    firstName,
+    lastName,
+    email,
+    notes,
+    updatedAt: new Date().toISOString()
+  };
+  contacts.push(newContact); 
+  saveContactsToFile(); 
+  res.redirect('/contacts'); 
+});
 
 // DELETE route for deleting a contact
 app.delete('/contacts/:id', (req, res) => {
@@ -80,18 +96,18 @@ app.delete('/contacts/:id', (req, res) => {
   }
   // Remove the contact from the contacts array
   contacts.splice(index, 1);
-  // Save the updated contacts to the JSON file
+  // Saveing the updated contacts to the JSON file
   saveContactsToFile();
-  res.sendStatus(204); // Send No Content response upon successful deletion
+  res.sendStatus(204); 
 });
 
-// Function to save contacts to file
+// Save contacts to file
 function saveContactsToFile() {
   const contactsFilePath = path.join(__dirname, 'data', 'contacts.json');
   fs.writeFileSync(contactsFilePath, JSON.stringify(contacts, null, 2));
 }
 
-// Start the server
+// Starting the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
