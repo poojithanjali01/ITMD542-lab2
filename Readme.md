@@ -17,7 +17,8 @@ This project is a simple contact database application built using Node.js and Ex
 ## Installation/Running Instructions
 1. Clone the repository from [https://github.com/poojithanjali01/ITMD542-lab2](https://github.com/poojithanjali01/ITMD542-lab2)
 2. Open the project directory in your terminal.
-3. Run `npm install` to install dependencies.
+3. Run `npm install` and 'npm install uuid
+' to install dependencies.
 4. Start the application by running `npm start`.
 5. Access the application in your web browser at [http://localhost:3000](http://localhost:3000).
 
