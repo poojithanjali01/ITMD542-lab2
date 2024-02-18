@@ -40,15 +40,15 @@ app.get('/contacts/:id', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'view.html')); // Render view.html for the contact
 });
 
-
 app.get('/edit-contact/:id', (req, res) => {
   const contactId = req.params.id;
   const contact = contacts.find(contact => contact.id === contactId);
   if (!contact) {
     return res.status(404).send('Contact not found');
   }
-  res.sendFile(path.join(__dirname, 'views', 'edit-contact.html'));
+  res.sendFile(path.join(__dirname, 'views', 'edit-contact.html')); // Send edit-contact.html for editing the contact
 });
+
 
 // POST route for editing a contact
 app.post('/edit-contact/:id', (req, res) => {
