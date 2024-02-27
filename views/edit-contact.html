@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Contact</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: border-color 0.3s ease;
+    }
+    
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #66afe9;
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    
+    .error-message {
+      color: red;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Edit Contact</h1>
+    <form id="editContactForm" action="#" method="POST" onsubmit="return validateForm()">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes" rows="3"></textarea>
+      </div>
+      <div id="errorContainer" class="error-message"></div>
+      <button type="submit" class="btn">Save Changes</button>
+    </form>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+      try {
+        const editContactForm = document.getElementById('editContactForm');
+        const contactId = window.location.pathname.split('/').pop(); 
+        
+        const contactsResponse = await fetch(`/contactsData`);
+        
+        if (!contactsResponse.ok) {
+          throw new Error('Failed to fetch contact information');
+        }
+        
+        const contacts = await contactsResponse.json();
+        const contact = contacts.find(c => c.id === contactId);
+        
+        if (!contact) {
+          throw new Error('Contact not found');
+        }
+        
+        const formElements = {
+          firstName: document.getElementById('firstName'),
+          lastName: document.getElementById('lastName'),
+          email: document.getElementById('email'),
+          notes: document.getElementById('notes')
+        };
+        
+        Object.keys(formElements).forEach(key => {
+          formElements[key].value = contact[key] || '';
+        });
+        
+        editContactForm.action = `/edit-contact/${contact.id}`;
+      } catch (error) {
+        displayErrorMessage(error.message);
+        console.error('Error fetching or populating contact:', error);
+      }
+    });
+  
+    function displayErrorMessage(message) {
+      const errorContainer = document.getElementById('errorContainer');
+      errorContainer.innerText = message;
+      errorContainer.style.display = 'block';
+    }
+    
+    function validateForm() {
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      
+      if (firstName === '' || lastName === '') {
+        displayErrorMessage('First Name and Last Name are required');
+        return false;
+      }
+      
+      if (email !== '' && !validateEmail(email)) {
+        displayErrorMessage('Invalid email format');
+        return false;
+      }
+      
+      return true;
+    }
+    
+    function validateEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+  </script>
+</body>
+</html>

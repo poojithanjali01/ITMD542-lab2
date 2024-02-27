@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Individual Contact</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .contact-details-card {
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .contact-details-card h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .contact-details {
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .error-message {
+      color: #d9534f;
+      font-weight: bold;
+    }
+
+    .back-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="contact-details-card">
+    <h1>Contact Details</h1>
+    <div class="contact-details" id="contactDetails">
+      <p>Loading...</p>
+    </div>
+    <button class="back-button" onclick="goBack()">Back</button>
+  </div>
+
+  <script>
+    function renderContactDetails(contact) {
+      return `
+        <p><strong>First Name:</strong> ${contact.firstName}</p>
+        <p><strong>Last Name:</strong> ${contact.lastName}</p>
+        <p><strong>Email:</strong> ${contact.email}</p>
+        <p><strong>Notes:</strong> ${contact.notes || 'N/A'}</p>
+      `;
+    }
+
+    fetch('/contactsData') 
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch contact details. Please try again later.');
+        }
+        return response.json();
+      })
+      .then(contacts => {
+        const contactId = window.location.pathname.split('/').pop();
+        const contact = contacts.find(contact => contact.id === contactId);
+        if (contact) {
+          document.getElementById('contactDetails').innerHTML = renderContactDetails(contact);
+        } else {
+          throw new Error('Contact not found.');
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching contacts:', error);
+        document.getElementById('contactDetails').innerHTML = `<p class="error-message">${error.message}</p>`;
+      });
+
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>
